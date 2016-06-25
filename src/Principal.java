@@ -1,11 +1,11 @@
-import conexaoFTP.ConectaFTP;
-import manipuladorArquivos.LerArquivoFTP;
+import FTPconnect.FTPconnect;
+import manipuladorArquivos.FTPFileReader;
 
 public class Principal {
 	public static void main(String[] args)
 	{
-		ConectaFTP con = new ConectaFTP("", "", "");
-		LerArquivoFTP arq = new LerArquivoFTP(con, "");
+		FTPconnect con = new FTPconnect("", "", "");
+		FTPFileReader arq = new FTPFileReader(con, "");
 		
 		arq.listarArquivos();
 	}
