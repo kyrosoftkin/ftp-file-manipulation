@@ -1,34 +1,34 @@
-package conexaoFTP;
-import java.util.ArrayList;
+package FTPconnect;
 import java.io.IOException;
- 
 import org.apache.commons.net.ftp.FTPClient;
 
-public class ConectaFTP {
-	private static ArrayList<String> dados = new ArrayList<String>();
+public class FTPconnect {
 	private FTPClient ftpClient = new FTPClient();
+	private String host;
+	private String user;
+	private String pass;
 	
-	public ConectaFTP(String host, String user, String pass){
-		dados.add(host);
-		dados.add(user);
-		dados.add(pass);
+	public FTPconnect(String host, String user, String pass){
+		this.host = host;
+		this.user = user;
+		this.pass = pass;
 	}
 	
 	public FTPClient getClient(){
 		return ftpClient;
 	}
 	
-	public void abreConexao(){
+	public void openConnection(){
 		try{	
-			ftpClient.connect(dados.get(0), 21);
-			ftpClient.login(dados.get(1), dados.get(2));
+			ftpClient.connect(this.host, 21);
+			ftpClient.login(this.user, this.pass);
 		} catch(IOException ex){
 			System.out.println("Oops! Algo deu errado!");
 	        ex.printStackTrace();
 		}
 	}
 	
-	public void fechaConexao(){
+	public void closeConnection(){
 		try {
             if (ftpClient.isConnected()) {
                 ftpClient.logout();
