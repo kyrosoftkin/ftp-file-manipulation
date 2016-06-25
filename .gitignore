@@ -1,2 +1,4 @@
-bin/
-.settings/
+$ cat .gitignore
+# ignore generated files,
+*bin/
+*.settings/

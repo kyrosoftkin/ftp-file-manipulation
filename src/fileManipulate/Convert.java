@@ -1,4 +1,4 @@
-package manipuladorArquivos;
+package fileManipulate;
 
 class Convert {
 	/*

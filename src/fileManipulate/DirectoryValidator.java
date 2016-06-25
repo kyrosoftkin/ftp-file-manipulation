@@ -1,4 +1,4 @@
-package manipuladorArquivos;
+package fileManipulate;
 
 import java.io.IOException;
 

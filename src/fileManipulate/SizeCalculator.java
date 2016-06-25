@@ -1,8 +1,8 @@
-package manipuladorArquivos;
+package fileManipulate;
 
 class SizeCalculator {
 	static void totalSize(long tamanho) {
-		System.out.println("Tamanho total do diretório: " + Convert.convertBytes(tamanho, true)); 
+		System.out.println("Tamanho total do diretï¿½rio: " + Convert.convertBytes(tamanho, true)); 
 	}
 	
 	static void totalDeletedSize(long tamanhoApagado) {
