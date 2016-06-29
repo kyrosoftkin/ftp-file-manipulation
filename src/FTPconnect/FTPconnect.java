@@ -23,7 +23,7 @@ public class FTPconnect {
 			ftpClient.connect(this.host, 21);
 			ftpClient.login(this.user, this.pass);
 		} catch(IOException ex){
-			System.out.println("Oops! Algo deu errado!");
+			System.out.println("Oops! Something is wrong!");
 	        ex.printStackTrace();
 		}
 	}
