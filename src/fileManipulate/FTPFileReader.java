@@ -19,9 +19,9 @@ public class FTPFileReader extends FileManipulator {
 			super.conFtp.openConnection();
 			super.delete(dir, "2016");
 			
-			SizeCalculator.totalSize(super.tamanho);
-			SizeCalculator.totalDeletedSize(super.tamanhoApagado);
-			SizeCalculator.actualSize(super.tamanho, super.tamanhoApagado);
+			SizeCalculator.totalSize(super.size);
+			SizeCalculator.totalDeletedSize(super.erasedSize);
+			SizeCalculator.actualSize(super.size, super.erasedSize);
 			} catch(IOException ex){
 			System.out.println("Oops! Algo deu errado!");
 	        ex.printStackTrace();
@@ -39,7 +39,7 @@ public class FTPFileReader extends FileManipulator {
 			this.conFtp.openConnection();
 			super.listFiles(dir);
 			
-			SizeCalculator.totalSize(super.tamanho);;
+			SizeCalculator.totalSize(super.size);;
 		} catch(IOException ex){
 			System.out.println("Oops! Something is wrong!");
 	        ex.printStackTrace();
