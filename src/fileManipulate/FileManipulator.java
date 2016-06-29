@@ -1,4 +1,4 @@
-package manipuladorArquivos;
+package fileManipulate;
 
 import java.io.IOException;
 import java.text.DateFormat;
@@ -9,21 +9,21 @@ import FTPconnect.FTPconnect;
 
 public class FileManipulator {
 	protected FTPconnect conFtp;
-	protected long tamanho;
-	protected long tamanhoApagado;
-	protected int arquivos;
-	protected int diretorios;
-	protected int arquivosApagados;
-	protected int diretoriosApagados;
+	protected long size;
+	protected long erasedSize;
+	protected int files;
+	protected int directories;
+	protected int erasedFiles;
+	protected int erasedDirectories;
 	
 	public FileManipulator(FTPconnect conFtp) {
 		this.conFtp = conFtp;
 	}
 	
 	/*
-	 * Varre um diretorio, todas as pastas e l� todos os arquivos 
-	 * procurando os que tem o ano informado e apagando-os.
-	 * Os diretorios vazios tamb�m s�o apagados.
+	 * Scan a directory, all the folders and read all the files, looking for the 
+	 * ones that has the year informed and erasing them.
+	 * The empty directories also are erased.
 	 */
 	protected void delete(String dir, String ano) throws IOException {
 		FTPFile[] files = conFtp.getClient().listFiles(dir.replace(" ", "\\ "));
@@ -38,22 +38,22 @@ public class FileManipulator {
 				
 				if (file.isDirectory()) {
 			    	this.delete(filePath, ano);
-			    	this.diretorios += 1;
+			    	this.directories += 1;
 					boolean deletar = deleteDirectory(filePath);
 
 					if(deletar)
-						this.diretoriosApagados += 1;
+						this.erasedDirectories += 1;
 					
 				} else {
-					this.arquivos += 1;
-					this.tamanho += size;
+					this.files += 1;
+					this.size += size;
 			    	
 					if(dateFormater.format(file.getTimestamp().getTime()).equals(ano)) {
 			    		boolean deletar = deleteFile(filePath);
 			    		
 			    		if(deletar) {
-			    			this.arquivosApagados += 1;
-			    			this.tamanhoApagado += size;
+			    			this.erasedFiles += 1;
+			    			this.erasedSize += size;
 			    		}
 					}
 			    }	
@@ -62,7 +62,7 @@ public class FileManipulator {
 	}
 	
 	/*
-	 * Varre um diretorio, todas as pastas e l� todos os arquivos, listando-os.
+	 * Scan a directory, reading all the files and folders.
 	 */
 	protected void listFiles(String dir) throws IOException {
 		FTPFile[] files = DirectoryValidator.validDirectoryPath(this.conFtp, dir);
@@ -78,8 +78,8 @@ public class FileManipulator {
 				if (file.isDirectory()) {
 			    	this.listFiles(details);
 				} else {
-					this.tamanho += size;
-					details += "\t\t Tamanho: " + Convert.convertBytes(size, true);
+					this.size += size;
+					details += "\t\t erasedSize: " + Convert.convertBytes(size, true);
 					details += "\t\t Data da �ltima altera��o: " + dateFormater.format(file.getTimestamp().getTime());
 					System.out.println(details);
 				}
@@ -88,7 +88,7 @@ public class FileManipulator {
 	}
 	
 	/*
-	 * Apaga arquivos.
+	 * Erase files.
 	 */
 	private boolean deleteFile(String filePath) {
 		try {
@@ -109,7 +109,7 @@ public class FileManipulator {
 	}
 	
 	/*
-	 * Apaga diretorios vazios.
+	 * Erase empty directories.
 	 */
 	private boolean deleteDirectory(String filePath) {
 		try {

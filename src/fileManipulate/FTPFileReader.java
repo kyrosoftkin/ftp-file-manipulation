@@ -1,4 +1,4 @@
-package manipuladorArquivos;
+package fileManipulate;
 
 import java.io.IOException;
 import FTPconnect.FTPconnect;
@@ -12,7 +12,7 @@ public class FTPFileReader extends FileManipulator {
 	}
 	
 	/*
-	 * Apaga arquivos.
+	 * Erase files.
 	 */
 	public void apagarArquivos() {
 		try{
@@ -31,8 +31,8 @@ public class FTPFileReader extends FileManipulator {
 	}
 	
 	/*
-	 * Lista arquivos devolvendo todos os dados correspondentes aos mesmos.
-	 * Devolve o tamanho, caminho, nome, extens�o e ultima data de modifica��o.
+	 * Lists all the files and return all of it`s informations.
+	 * Returns it`s size, path, name, extension and the last modified date.
 	 */
 	public void listarArquivos() {
 		try{
@@ -41,7 +41,7 @@ public class FTPFileReader extends FileManipulator {
 			
 			SizeCalculator.totalSize(super.tamanho);;
 		} catch(IOException ex){
-			System.out.println("Oops! Algo deu errado!");
+			System.out.println("Oops! Something is wrong!");
 	        ex.printStackTrace();
 		} finally { 
 			conFtp.closeConnection();
