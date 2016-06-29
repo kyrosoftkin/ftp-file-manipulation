@@ -2,7 +2,7 @@ package fileManipulate;
 
 class Convert {
 	/*
-	 * Converte de bytes para tamanho legivel.
+	 * Convert from bytes to a legible format.
 	 */
 	public static String convertBytes(long bytes, boolean sim) {
 	    int unit = sim ? 1000 : 1024;

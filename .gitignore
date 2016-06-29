@@ -1,4 +1,2 @@
 $ cat .gitignore
-# ignore generated files,
-*bin/
-*.settings/
+# ignore generated files
