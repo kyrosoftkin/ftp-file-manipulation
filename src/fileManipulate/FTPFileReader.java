@@ -23,7 +23,7 @@ public class FTPFileReader extends FileManipulator {
 			SizeCalculator.totalDeletedSize(super.erasedSize);
 			SizeCalculator.actualSize(super.size, super.erasedSize);
 			} catch(IOException ex){
-			System.out.println("Oops! Algo deu errado!");
+			System.out.println("Oops! Something is wrong!");
 	        ex.printStackTrace();
 		} finally { 
 			conFtp.closeConnection();
