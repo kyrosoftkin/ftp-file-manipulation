@@ -80,7 +80,7 @@ public class FileManipulator {
 				} else {
 					this.size += size;
 					details += "\t\t erasedSize: " + Convert.convertBytes(size, true);
-					details += "\t\t Data da �ltima altera��o: " + dateFormater.format(file.getTimestamp().getTime());
+					details += "\t\t Date of it's last alteration: " + dateFormater.format(file.getTimestamp().getTime());
 					System.out.println(details);
 				}
 			}    
@@ -94,14 +94,14 @@ public class FileManipulator {
 		try {
 			boolean deleted = conFtp.getClient().deleteFile(filePath);
 			if (deleted) {
-		        System.out.println("O arquivo: "+filePath+" foi removido com sucesso.");
+		        System.out.println("The file: "+filePath+" was successfully removed.");
 		        return true;
 			} else {
-		        System.out.println("N�o foi poss�vel remover o arquivo: "+filePath+". Talvez ele n�o exista.");
+		        System.out.println("Couldn't remove file: "+filePath+". Maybe it doesn't exist.");
 		        return false;
 			}
 		} catch (IOException ex) {
-    	    System.err.println("Ah n�o! Ocorreu um erro: " + ex.getMessage());
+    	    System.err.println("Oh no! An error: " + ex.getMessage());
     	}
 		
 		return false;
@@ -115,14 +115,14 @@ public class FileManipulator {
 		try {
 		    boolean deleted = conFtp.getClient().removeDirectory(filePath);
 		    if (deleted) {
-		        System.out.println("O diret�rio: "+filePath+" foi removido com sucesso.");
+		        System.out.println("The directory: "+filePath+" was successfully removed.");
 		        return true;
 		    } else {
-		        System.out.println("Diret�rio n�o removido: "+filePath+".");
+		        System.out.println("Directory couldn't be removed: "+filePath+".");
 		        return false;
 		    }
 		} catch (IOException ex) {
-		    System.out.println("Ah n�o! Ocorreu um erro: " + ex.getMessage());
+		    System.out.println("Oh no! An error: " + ex.getMessage());
 		}
 		
 		return false;
